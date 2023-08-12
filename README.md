@@ -1,4 +1,4 @@
-![image](https://github.com/thang44hdai/Java_PTIT/assets/102580944/4f4ab382-48e9-4cec-87e9-e22e0e5c73d4)CHELLO	Hello World
+CHELLO	Hello World
 
 HELLOFILE	HELLO FILE
 
