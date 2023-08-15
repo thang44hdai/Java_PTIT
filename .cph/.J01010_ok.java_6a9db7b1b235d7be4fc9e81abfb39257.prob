@@ -1,0 +1,1 @@
+{"name":"Local: J01010_ok","url":"c:\\Users\\84395\\Documents\\GitHub\\Java_PTIT\\J01010_ok.java","tests":[{"id":1692056830321,"input":"3\n1890\n3681\n8919","output":"1000\nINVALID\n10"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\84395\\Documents\\GitHub\\Java_PTIT\\J01010_ok.java","group":"local","local":true}
