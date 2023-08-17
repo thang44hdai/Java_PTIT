@@ -8,15 +8,21 @@ public class J02004 {
         int t = sc.nextInt();
         while (t-- > 0) {
             int n = sc.nextInt();
-            List<Integer> l = new ArrayList<Integer>();
-            for(int i=0;i<n;i++){
-                int x= sc.nextInt();
-                l.add(x);
+            int[] a=new int[n];
+            for (int i = 0; i < n; i++) {
+                a[i]= sc.nextInt();
             }
-
+            System.out.println(sol(a, n));
         }
-
     }
-    public static String sol(List<Integer> l){
+
+    public static String sol(int[] a, int n) {
+        int l = 0;
+        int r = n - 1;
+        while (l < r) {
+            if (a[l++] != a[r--])
+                return "NO";
+        }
+        return "YES";
     }
 }

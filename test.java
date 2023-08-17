@@ -1,30 +1,21 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class test {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        String space = sc.nextLine();
-        while (t-- > 0) {
-            String n = sc.nextLine();
-            System.out.println(sol(n));
+        int n = sc.nextInt(), m = sc.nextInt(), x;
+        int a[] = new int[1001];
+        int b[] = new int[1001];
+        for (int i = 0; i < n; i++) {
+            x = sc.nextInt();
+            a[x] = 1;
         }
-    }
-
-    private static String sol(String n) {
-        long sum = 0;
-        int len = n.length();
-        for (int i = 0; i < len - 1; i++) {
-            int x = n.charAt(i) - '0';
-            int y = n.charAt(i + 1) - '0';
-            if (Math.abs(x - y) != 2)
-                return "NO";
-            else
-                sum += x;
+        for (int i = 0; i < m; i++) {
+            x = sc.nextInt();
+            b[x] = 1;
         }
-        sum += n.charAt(len - 1) - '0';
-        if (sum % 10 == 0)
-            return "YES";
-        return "NO";
+        for (int i = 1; i <= 1000; i++)
+            if (a[i] == 1 && b[i] == 1)
+                System.out.printf("%d ", i);
     }
 }
