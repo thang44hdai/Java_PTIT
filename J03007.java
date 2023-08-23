@@ -1,17 +1,21 @@
 import java.util.Scanner;
 
-public class J03006 {
+public class J03007 {
     public static String sol(String s) {
-        int l = 0, r = s.length() - 1;
+        int n = s.length();
+        if (s.charAt(0) != '8' || s.charAt(n - 1) != '8')
+            return "NO";
+        int l = 0, r = n - 1, sum = 0;
         while (l < r) {
-            int x = s.charAt(l) - '0';
-            int y = s.charAt(r) - '0';
-            if (x % 2 == 1 || y % 2 == 1 || x != y)
+            if (s.charAt(l) != s.charAt(r))
                 return "NO";
+            sum += s.charAt(l) - '0' + s.charAt(r) - '0';
             l++;
             r--;
         }
-        return "YES";
+        if (sum % 10 == 0)
+            return "YES";
+        return "NO";
     }
 
     public static void main(String[] args) {
@@ -22,5 +26,6 @@ public class J03006 {
             String s = sc.nextLine();
             System.out.println(sol(s));
         }
+    
     }
 }
