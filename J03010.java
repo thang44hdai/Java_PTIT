@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.Vector;
 
-public class J03004 {
+public class J03010 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
@@ -21,10 +21,7 @@ public class J03004 {
                     x += s.charAt(i);
                 }
             }
-            for (int i = 0; i < a.size(); i++) {
-                String k = a.get(i);
-                System.out.print(k.substring(0, 1).toUpperCase() + k.substring(1) + " ");
-            }
+            
             System.out.println();
         }
     }
