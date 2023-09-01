@@ -21,6 +21,10 @@ public class J03032 {
                     System.out.print(" ");
                 }
             }
+            while (!st.empty()) {
+                System.out.print(st.peek());
+                st.pop();
+            }
             System.out.println();
         }
     }

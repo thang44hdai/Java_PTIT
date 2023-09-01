@@ -1,0 +1,1 @@
+{"name":"Local: J04008","url":"c:\\Users\\84395\\Documents\\GitHub\\Java_PTIT\\J04008.java","tests":[{"id":1693501060809,"input":"3\n0 0 0 5 0 199\n1 1 1 1 1 1\n0 0 0 5 5 0","output":"INVALID\nINVALID\n17.071"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\84395\\Documents\\GitHub\\Java_PTIT\\J04008.java","group":"local","local":true}

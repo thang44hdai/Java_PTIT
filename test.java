@@ -1,41 +1,42 @@
-<<<<<<< HEAD
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Set;
+import java.util.Scanner;
 
 public class test {
-    public static void main(String[] args) {
-        Map<Integer, Integer> mp = new HashMap<Integer, Integer>();
-        mp.put(1, 1);
-        mp.put(2, 1);
-        int x = mp.get(1);
-        x++;
-        mp.put(1, x);
-        Set<Integer> st= mp.keySet();
-        for (int a : st) {
-            System.out.println(mp.get(a));
+    
+    public static Scanner sc = new Scanner(System.in);
+    public static void Solve(int T)
+    {
+        int[] m= new int[500];
+        long n= sc.nextLong();
+        System.out.printf("Test %d:", T);
+        for(int i=2; i<=Math.sqrt(n); i++)
+        {
+            if(n%i==0)
+            {
+                m[i]=0;
+                while(n%i==0)
+                {
+                    m[i]++;
+                    n/=i;
+                }
+            }
+            if(m[i]!=0)
+            {
+                System.out.print(" "+i+"("+m[i]+")"+" ");
+            }
+            
         }
-
-=======
-import java.util.*;
-
-public class test {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt(), m = sc.nextInt(), x;
-        int a[] = new int[1001];
-        int b[] = new int[1001];
-        for (int i = 0; i < n; i++) {
-            x = sc.nextInt();
-            a[x] = 1;
+        if(n!=1)
+        {
+            System.out.print(n+"(1)");
         }
-        for (int i = 0; i < m; i++) {
-            x = sc.nextInt();
-            b[x] = 1;
-        }
-        for (int i = 1; i <= 1000; i++)
-            if (a[i] == 1 && b[i] == 1)
-                System.out.printf("%d ", i);
->>>>>>> b958eb64f2029d69e3856a4787de6b3819be8bac
+       System.out.println();
     }
+    public static void main(String[] args) {
+        int T= sc.nextInt();
+        for(int i=1; i<=T; i++)
+        {
+            Solve(i);
+        }
+    }
+    
 }
