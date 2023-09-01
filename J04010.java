@@ -16,7 +16,7 @@ class Point {
     }
 }
 
-public class J04009 {
+public class J04010 {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int t = sc.nextInt();
@@ -30,8 +30,9 @@ public class J04009 {
             d2 = x.distance(z);
             d3 = y.distance(z);
             if (d1 + d2 > d3 && d1 + d3 > d2 && d2 + d3 > d1) {
-                double S = 1.0 / 4 * Math.sqrt((d1 + d2 + d3) * (d1 + d2 - d3) * (d1 - d2 + d3) * (-d1 + d2 + d3));
-                System.out.printf("%.2f\n", S);
+                double S = 1.0 / 4 * Math.sqrt((d1 + d2 + d3) * (d1 + d2 - d3) * (d1 + d3 - d2) * (d2 + d3 - d1));
+                double R = d1 * d2 * d3 / (4 * S);
+                System.out.printf("%.3f\n", Math.PI * R * R);
             } else {
                 System.out.println("INVALID");
             }
