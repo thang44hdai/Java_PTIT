@@ -1,42 +1,61 @@
+/* Author: NgTienHungg */
+
 import java.util.Scanner;
 
+class Officer {
+
+    String id, name;
+    int salary, bonus, allowance;
+
+
+    public Officer(String name, int wage, int workingDays, String role) {
+        this.id = "NV01";
+        this.name = name;
+        this.salary = wage * workingDays;
+
+        if (workingDays >= 25) {
+            this.bonus = (int) (salary * 0.2f);
+        } else if (workingDays >= 22) {
+            this.bonus = (int) (salary * 0.1f);
+        } else {
+            this.bonus = 0;
+        }
+
+        switch (role) {
+            case "GD":
+                allowance = 250000;
+                break;
+            case "PGD":
+                allowance = 200000;
+                break;
+            case "TP":
+                allowance = 180000;
+                break;
+            case "NV":
+                allowance = 150000;
+                break;
+        }
+    }
+
+    public int getIncome() {
+        return salary + bonus + allowance;
+    }
+
+    @Override
+    public String toString() {
+        return id + " " + name + " " + salary + " " + bonus + " " + allowance + " " + getIncome();
+    }
+}
+
 public class test {
-    
-    public static Scanner sc = new Scanner(System.in);
-    public static void Solve(int T)
-    {
-        int[] m= new int[500];
-        long n= sc.nextLong();
-        System.out.printf("Test %d:", T);
-        for(int i=2; i<=Math.sqrt(n); i++)
-        {
-            if(n%i==0)
-            {
-                m[i]=0;
-                while(n%i==0)
-                {
-                    m[i]++;
-                    n/=i;
-                }
-            }
-            if(m[i]!=0)
-            {
-                System.out.print(" "+i+"("+m[i]+")"+" ");
-            }
-            
-        }
-        if(n!=1)
-        {
-            System.out.print(n+"(1)");
-        }
-       System.out.println();
-    }
+
     public static void main(String[] args) {
-        int T= sc.nextInt();
-        for(int i=1; i<=T; i++)
-        {
-            Solve(i);
-        }
+        Scanner sc = new Scanner(System.in);
+        String name = sc.nextLine();
+        int salary = Integer.parseInt(sc.nextLine());
+        int workingDays = Integer.parseInt(sc.nextLine());
+        String role = sc.nextLine();
+        Officer officer = new Officer(name, salary, workingDays, role);
+        System.out.println(officer);
     }
-    
 }
