@@ -32,12 +32,6 @@ public class J07058 {
             public int compare(monThi a, monThi b){
                 return a.maMon.compareTo(b.maMon);
             }
-            // @Override
-            // public int compare(monThi a, monThi b) {
-            //     if (a.maMon.compareTo(b.maMon) > 0)
-            //         return 1;
-            //     return -1;
-            // }
         });
         for (int i = 0; i < n; i++)
             System.out.println(vt.get(i));
