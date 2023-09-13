@@ -24,7 +24,7 @@ class HSinh {
                 + this.x10) / 12.0;
         this.tbc = Math.round(this.tbc * 10.0) / 10.0;
         if (this.tbc >= 9.0) {
-            this.xeploai = "XUATSAC";
+            this.xeploai = "XUAT SAC";
         } else if (this.tbc >= 8.0) {
             this.xeploai = "GIOI";
         } else if (this.tbc >= 7.0) {
