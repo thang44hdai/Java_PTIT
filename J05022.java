@@ -27,11 +27,12 @@ public class J05022 {
             String name = sc.nextLine();
             String Class = sc.nextLine();
             String email = sc.nextLine();
-            // if (mp.get(Class) != null) {
-            //     mp.get(Class) = new Vector<sinhVien>();
-            // }
+            if (mp.get(Class) != null) {
+                mp.get(Class) = new Vector<sinhVien>();
+                mp.get(Class).add(new sinhVien(id, name, Class, email));
+            }
 
-            mp.get(Class).add(new sinhVien(id, name, Class, email));            System.out.println(email);
+            mp.get(Class).add(new sinhVien(id, name, Class, email));
 
         }
         int q = sc.nextInt();
