@@ -1,68 +1,86 @@
-/* Author: NgTienHungg */
+import java.util.*;
+import java.io.*;
 
-import java.util.Arrays;
-import java.util.Scanner;
+class HSinh {
+    private String name, id;
+    private double x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, tbc;
+    private String xeploai;
 
-class Player implements Comparable<Player> {
-
-    public String id, name, timeIn, timeOut;
-    public int time;
-
-    public Player(String id, String name, String timeIn, String timeOut) {
-        this.id = id;
+    public HSinh(int x, String name, double x1, double x2, double x3, double x4, double x5, double x6, double x7,
+            double x8, double x9, double x10) {
+        this.id = "HS" + String.format("%02d", x);
         this.name = name;
-        this.time = 60 * (Integer.parseInt(timeOut.substring(0, 2)) - Integer.parseInt(timeIn.substring(0, 2)))
-                + (Integer.parseInt(timeOut.substring(3)) - Integer.parseInt(timeIn.substring(3)));
+        this.x1 = x1;
+        this.x2 = x2;
+        this.x3 = x3;
+        this.x4 = x4;
+        this.x5 = x5;
+        this.x6 = x6;
+        this.x7 = x7;
+        this.x8 = x8;
+        this.x9 = x9;
+        this.x10 = x10;
+        this.tbc = (this.x1 * 2.0 + this.x2 * 2.0 + this.x3 + this.x4 + this.x5 + this.x6 + this.x7 + this.x8 + this.x9
+                + this.x10) / 12.0;
+        this.tbc = Math.round(this.tbc * 10.0) / 10.0;
+        if (this.tbc >= 9.0) {
+            this.xeploai = "XUATSAC";
+        } else if (this.tbc >= 8.0) {
+            this.xeploai = "GIOI";
+        } else if (this.tbc >= 7.0) {
+            this.xeploai = "KHA";
+        } else if (this.tbc >= 5.0) {
+            this.xeploai = "TB";
+        } else {
+            this.xeploai = "YEU";
+        }
     }
 
-    public String getTime() {
-        int h = time / 60;
-        int m = time % 60;
-        return String.format("%d gio %d phut", h, m);
-    }
-
-    @Override
     public String toString() {
-        return id + " " + name + " " + getTime();
+        return this.id + " " + this.name + " " + String.format("%.1f", this.tbc) + " " + this.xeploai;
     }
 
-    @Override
-    public int compareTo(Player o) {
-        return -(this.time - o.time);
+    public double gettb() {
+        return this.tbc;
+    }
+
+    public String getid() {
+        return this.id;
     }
 }
 
 public class test {
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = Integer.parseInt(sc.nextLine());
-        Player[] list = new Player[n];
+        int n = sc.nextInt();
+        HSinh[] a = new HSinh[n];
         for (int i = 0; i < n; i++) {
-            String id = sc.nextLine();
-            String name = sc.nextLine();
-            String timeIn = sc.nextLine();
-            String timeOut = sc.nextLine();
-            list[i] = new Player(id, name, timeIn, timeOut);
+            sc.nextLine();
+            a[i] = new HSinh(i + 1, sc.nextLine(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(),
+                    sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(),
+                    sc.nextDouble());
         }
-
-        Arrays.sort(list);
-        for (Player e : list) {
-            System.out.println(e);
-        }
+        Arrays.sort(a, new Comparator<HSinh>() {
+            public int compare(HSinh a, HSinh b) {
+                if (a.gettb() != b.gettb()) {
+                    if (a.gettb() > b.gettb())
+                        return -1;
+                    else
+                        return 1;
+                }
+                return a.getid().compareTo(b.getid());
+            }
+        });
+        for (HSinh x : a)
+            System.out.println(x);
     }
 }
-
-// 3
-// 01T
-// Nguyen Van An
-// 09:00
-// 10:30
-// 06T
-// Hoang Van Nam
-// 15:30
-// 18:00
-// 02I
-// Tran Hoa Binh
-// 09:05
-// 10:00
+/*
+ * 3
+ * Luu Thuy Nhi
+ * 9,3 9,0 7,1 6,5 6,2 6,0 8,2 6,7 4,8 5,5
+ * Le Van Tam
+ * 8,0 8,0 5,5 9,0 6,8 9,0 7,2 8,3 7,2 6,8
+ * Nguyen Thai Binh
+ * 9,0 6,4 6,0 7,5 6,7 5,5 5,0 6,0 6,0 6,0
+ */
