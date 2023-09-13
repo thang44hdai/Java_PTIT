@@ -1,49 +1,34 @@
 /* Author: NgTienHungg */
 
+import java.util.Arrays;
 import java.util.Scanner;
 
-class Officer {
+class Player implements Comparable<Player> {
 
-    String id, name;
-    int salary, bonus, allowance;
+    public String id, name, timeIn, timeOut;
+    public int time;
 
-
-    public Officer(String name, int wage, int workingDays, String role) {
-        this.id = "NV01";
+    public Player(String id, String name, String timeIn, String timeOut) {
+        this.id = id;
         this.name = name;
-        this.salary = wage * workingDays;
-
-        if (workingDays >= 25) {
-            this.bonus = (int) (salary * 0.2f);
-        } else if (workingDays >= 22) {
-            this.bonus = (int) (salary * 0.1f);
-        } else {
-            this.bonus = 0;
-        }
-
-        switch (role) {
-            case "GD":
-                allowance = 250000;
-                break;
-            case "PGD":
-                allowance = 200000;
-                break;
-            case "TP":
-                allowance = 180000;
-                break;
-            case "NV":
-                allowance = 150000;
-                break;
-        }
+        this.time = 60 * (Integer.parseInt(timeOut.substring(0, 2)) - Integer.parseInt(timeIn.substring(0, 2)))
+                + (Integer.parseInt(timeOut.substring(3)) - Integer.parseInt(timeIn.substring(3)));
     }
 
-    public int getIncome() {
-        return salary + bonus + allowance;
+    public String getTime() {
+        int h = time / 60;
+        int m = time % 60;
+        return String.format("%d gio %d phut", h, m);
     }
 
     @Override
     public String toString() {
-        return id + " " + name + " " + salary + " " + bonus + " " + allowance + " " + getIncome();
+        return id + " " + name + " " + getTime();
+    }
+
+    @Override
+    public int compareTo(Player o) {
+        return -(this.time - o.time);
     }
 }
 
@@ -51,11 +36,33 @@ public class test {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        String name = sc.nextLine();
-        int salary = Integer.parseInt(sc.nextLine());
-        int workingDays = Integer.parseInt(sc.nextLine());
-        String role = sc.nextLine();
-        Officer officer = new Officer(name, salary, workingDays, role);
-        System.out.println(officer);
+        int n = Integer.parseInt(sc.nextLine());
+        Player[] list = new Player[n];
+        for (int i = 0; i < n; i++) {
+            String id = sc.nextLine();
+            String name = sc.nextLine();
+            String timeIn = sc.nextLine();
+            String timeOut = sc.nextLine();
+            list[i] = new Player(id, name, timeIn, timeOut);
+        }
+
+        Arrays.sort(list);
+        for (Player e : list) {
+            System.out.println(e);
+        }
     }
 }
+
+// 3
+// 01T
+// Nguyen Van An
+// 09:00
+// 10:30
+// 06T
+// Hoang Van Nam
+// 15:30
+// 18:00
+// 02I
+// Tran Hoa Binh
+// 09:05
+// 10:00
