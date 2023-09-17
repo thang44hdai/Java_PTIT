@@ -20,26 +20,25 @@ public class J05022 {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
         HashMap<String, Vector<sinhVien>> mp = new HashMap<>();
-
+        sc.nextLine();
         for (int i = 0; i < n; i++) {
-            sc.nextLine();
             String id = sc.nextLine();
             String name = sc.nextLine();
             String Class = sc.nextLine();
             String email = sc.nextLine();
-            if (mp.get(Class) != null) {
-                mp.get(Class) = new Vector<sinhVien>();
+            Vector<sinhVien> x = new Vector<>();
+            x.add(new sinhVien(id, name, Class, email));
+            if (mp.containsKey(Class))
                 mp.get(Class).add(new sinhVien(id, name, Class, email));
-            }
-
-            mp.get(Class).add(new sinhVien(id, name, Class, email));
+            else
+                mp.put(Class, x);
 
         }
         int q = sc.nextInt();
         sc.nextLine();
         while (q-- > 0) {
             String s = sc.nextLine();
-            System.out.printf("DANH SACH SINH VIEN LOP %s\n", s);
+            System.out.printf("DANH SACH SINH VIEN LOP %s:\n", s);
             for (sinhVien i : mp.get(s))
                 System.out.println(i);
         }
