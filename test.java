@@ -1,86 +1,89 @@
-import java.util.*;
-import java.io.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Scanner;
 
-class HSinh {
-    private String name, id;
-    private double x1, x2, x3, x4, x5, x6, x7, x8, x9, x10, tbc;
-    private String xeploai;
+class Staff implements Comparable<Staff> {
 
-    public HSinh(int x, String name, double x1, double x2, double x3, double x4, double x5, double x6, double x7,
-            double x8, double x9, double x10) {
-        this.id = "HS" + String.format("%02d", x);
+    private String id;
+    private String name;
+    private String chucVu;
+    private String heSoLuong;
+    private String soHieu;
+
+    public Staff(String id, String name) {
+        this.id = id;
         this.name = name;
-        this.x1 = x1;
-        this.x2 = x2;
-        this.x3 = x3;
-        this.x4 = x4;
-        this.x5 = x5;
-        this.x6 = x6;
-        this.x7 = x7;
-        this.x8 = x8;
-        this.x9 = x9;
-        this.x10 = x10;
-        this.tbc = (this.x1 * 2.0 + this.x2 * 2.0 + this.x3 + this.x4 + this.x5 + this.x6 + this.x7 + this.x8 + this.x9
-                + this.x10) / 12.0;
-        this.tbc = Math.round(this.tbc * 10.0) / 10.0;
-        if (this.tbc >= 9.0) {
-            this.xeploai = "XUAT SAC";
-        } else if (this.tbc >= 8.0) {
-            this.xeploai = "GIOI";
-        } else if (this.tbc >= 7.0) {
-            this.xeploai = "KHA";
-        } else if (this.tbc >= 5.0) {
-            this.xeploai = "TB";
-        } else {
-            this.xeploai = "YEU";
+
+        chucVu = id.substring(0, 2);
+        heSoLuong = id.substring(2, 4);
+        soHieu = id.substring(4);
+
+        checkID();
+    }
+
+    private void checkID() {
+        if ((chucVu.equals("GD") && Integer.parseInt(soHieu) > 1)
+                || (chucVu.equals("TP") && Integer.parseInt(soHieu) > 3)
+                || (chucVu.equals("PP") && Integer.parseInt(soHieu) > 3)) {
+            chucVu = "NV";
         }
     }
 
+    public boolean isContains(String sub) {
+        return name.toLowerCase().contains(sub);
+    }
+
+    @Override
+    public int compareTo(Staff o) {
+        if (this.heSoLuong.compareTo(o.heSoLuong) == 0) {
+            return this.soHieu.compareTo(o.soHieu);
+        }
+        return -this.heSoLuong.compareTo(o.heSoLuong);
+    }
+
+    @Override
     public String toString() {
-        return this.id + " " + this.name + " " + String.format("%.1f", this.tbc) + " " + this.xeploai;
-    }
-
-    public double gettb() {
-        return this.tbc;
-    }
-
-    public String getid() {
-        return this.id;
+        return name + " " + chucVu + " " + soHieu + " " + heSoLuong;
     }
 }
 
 public class test {
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
-        HSinh[] a = new HSinh[n];
+
+        int n = Integer.parseInt(sc.nextLine());
+        List<Staff> list = new ArrayList<>();
+
         for (int i = 0; i < n; i++) {
-            sc.nextLine();
-            a[i] = new HSinh(i + 1, sc.nextLine(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(),
-                    sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(), sc.nextDouble(),
-                    sc.nextDouble());
+            String input = sc.nextLine();
+            String id = input.substring(0, 7);
+            String name = input.substring(8);
+            list.add(new Staff(id, name));
         }
-        Arrays.sort(a, new Comparator<HSinh>() {
-            public int compare(HSinh a, HSinh b) {
-                if (a.gettb() != b.gettb()) {
-                    if (a.gettb() > b.gettb())
-                        return -1;
-                    else
-                        return 1;
+        Collections.sort(list);
+
+        int m = Integer.parseInt(sc.nextLine());
+        for (int i = 0; i < m; i++) {
+            String s = sc.nextLine().toLowerCase();
+            for (Staff e : list) {
+                if (e.isContains(s)) {
+                    System.out.println(e);
                 }
-                return a.getid().compareTo(b.getid());
             }
-        });
-        for (HSinh x : a)
-            System.out.println(x);
+            System.out.println("");
+        }
     }
 }
-/*
- * 3
- * Luu Thuy Nhi
- * 9,3 9,0 7,1 6,5 6,2 6,0 8,2 6,7 4,8 5,5
- * Le Van Tam
- * 8,0 8,0 5,5 9,0 6,8 9,0 7,2 8,3 7,2 6,8
- * Nguyen Thai Binh
- * 9,0 6,4 6,0 7,5 6,7 5,5 5,0 6,0 6,0 6,0
- */
+
+// 6
+// GD08001 Nguyen Kim Loan
+// TP05002 Hoang Thanh Tuan
+// TP05001 Tran Binh Nguyen
+// PP06002 Phan Trung Tuan
+// PP06001 Tran Quoc Huy
+// NV04003 Vo Van Lan
+// 2
+// OA
+// aN

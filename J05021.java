@@ -29,7 +29,6 @@ public class J05021 {
         }
 
         vt.sort(new Comparator<sinhVien>() {
-
             @Override
             public int compare(sinhVien o1, sinhVien o2) {
                 return o1.id.compareTo(o2.id);
