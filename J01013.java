@@ -1,24 +1,29 @@
 import java.util.Scanner;
 
 public class J01013 {
+    static long[] f = new long[2000001];
+
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        long sum = 0;
-        while (t-- > 0) {
-            int n = sc.nextInt();
-            for (long i = 2; i <= (long) Math.sqrt(n); i++) {
-                if (n % i == 0) {
-                    while (n % i == 0) {
-                        sum += i;
-                        n /= i;
-                    }
+        for (int i = 0; i < 2000001; i++) {
+            f[i] = 0;
+            int check = 0;
+            for (int j = 2; j <= (int) Math.sqrt(i); j++) {
+                if (i % j == 0) {
+                    f[i] = f[j] + f[i / j];
+                    check = 1;
+                    break;
                 }
             }
-            if (n > 1)
-                sum += n;
-
+            if (check == 0)
+                f[i] = i;
         }
-        System.out.println(sum);
+        Scanner sc = new Scanner(System.in);
+        long t = sc.nextLong();
+        long s = 0;
+        for (long i = 0; i < t; i++) {
+            int a = sc.nextInt();
+            s += f[a];
+        }
+        System.out.print(s);
     }
 }

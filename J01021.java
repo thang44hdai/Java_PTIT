@@ -1,13 +1,13 @@
 import java.util.Scanner;
 
 public class J01021 {
-    static int m = 1000000007;
+    static long m = (long) (1e9 + 7);
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         while (true) {
-            long x = sc.nextInt();
-            long y = sc.nextInt();
+            long x = sc.nextLong();
+            long y = sc.nextLong();
             if (x == 0 && y == 0)
                 break;
             System.out.println(Pow(x, y));

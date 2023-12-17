@@ -17,10 +17,8 @@ public class J01022 {
     }
 
     private static long sol(int n, long k) {
-        if (n == 1)
-            return 0;
-        if (n == 2)
-            return 1;
+        if (n <= 2)
+            return n - 1;
         if (k > f[n - 2])
             return sol(n - 1, k - f[n - 2]);
         else

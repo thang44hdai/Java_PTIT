@@ -17,12 +17,12 @@ public class J02014 {
             for (int i = 1; i < n; i++) {
                 check += a[i];
                 if ((check - a[i]) * 2 == sum - a[i]) {
-                    System.out.println(i+1);
+                    System.out.println(i + 1);
                     flag = false;
                     break;
                 }
             }
-            if (!flag)
+            if (flag == true)
                 System.out.println(-1);
         }
     }

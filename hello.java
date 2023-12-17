@@ -6,10 +6,9 @@ public class hello {
         int x = cin.nextInt();
         if (x > 20) {
             System.out.println("ok");
-        } else if (x>40){
+        } else if (x > 40) {
             System.out.println("no OK");
-        }
-        else{
+        } else {
             System.out.println("hahaha");
         }
 

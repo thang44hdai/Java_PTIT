@@ -1,0 +1,1 @@
+{"name":"Local: J08022","url":"c:\\Users\\84395\\Documents\\GitHub\\Java_PTIT\\J08022.java","tests":[{"id":1698332569833,"input":"3\n\n4\n\n4 5 2 25\n\n3\n\n2 2 2\n\n4\n\n4 4 5 5","output":""}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\84395\\Documents\\GitHub\\Java_PTIT\\J08022.java","group":"local","local":true}
