@@ -6,18 +6,16 @@ import java.util.*;
 
 public class J07005 {
     public static void main(String[] args) throws IOException, FileNotFoundException {
-        DataInputStream is = new DataInputStream(new FileInputStream("DATA.IN"));
+        DataInputStream sc = new DataInputStream(new FileInputStream("DATA.IN"));
         TreeMap<Integer, Integer> mp = new TreeMap<>();
         for (int i = 0; i < 100000; i++) {
-            int x = is.readInt();
-            if (mp.get(x) == null)
-                mp.put(x, 1);
+            int n = sc.readInt();
+            if (mp.get(n) == null)
+                mp.put(n, 1);
             else
-                mp.put(x, mp.get(x) + 1);
+                mp.put(n, mp.get(n) + 1);
         }
-        for (int i : mp.keySet()) {
+        for (int i : mp.keySet())
             System.out.println(i + " " + mp.get(i));
-        }
-
     }
 }

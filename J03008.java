@@ -1,26 +1,17 @@
 import java.util.Scanner;
+import java.util.*;
 
 public class J03008 {
-    public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int t = sc.nextInt();
-        String space = sc.nextLine();
-        while (t-- > 0) {
-            String s = sc.nextLine();
-            System.out.println(sol(s));
-        }
+    private static int nt(char c) {
+        if (c == '2' || c == '3' || c == '5' || c == '7')
+            return 1;
+        return 0;
     }
 
-    private static boolean snt(char s) {
-        if (s != '2' && s != '3' && s != '5' && s != '7')
-            return false;
-        return true;
-    }
-
-    private static String sol(String s) {
-        int l = 0, r = s.length() - 1;
+    private static String sol(String n) {
+        int l = 0, r = n.length() - 1;
         while (l < r) {
-            if (s.charAt(l) != s.charAt(r) || snt(s.charAt(l)) == false || snt(s.charAt(r)) == false)
+            if (n.charAt(l) != n.charAt(r) || nt(n.charAt(l)) == 0 || nt(n.charAt(r)) == 0)
                 return "NO";
             l++;
             r--;
@@ -28,4 +19,13 @@ public class J03008 {
         return "YES";
     }
 
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int t = sc.nextInt();
+        sc.nextLine();
+        while (t-- > 0) {
+            String n = sc.nextLine();
+            System.out.println(sol(n));
+        }
+    }
 }
